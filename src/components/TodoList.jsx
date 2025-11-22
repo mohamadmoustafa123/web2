@@ -3,6 +3,8 @@ import {
   CardContent,
   Container,
   Divider,
+  Grid,
+  TextField,
   ToggleButton,
   ToggleButtonGroup,
   Typography,
@@ -10,10 +12,11 @@ import {
 import { useState } from "react";
 
 export default function TodoList() {
-    const [displayedTodosType,setDispledTodosType]=useState("all")
-    function handleChange(e){
-        setDispledTodosType(e.target.value)
-    }
+  const [displayedTodosType, setDispledTodosType] = useState("all");
+   const [titleInput, setTiteInput] = useState("");
+  function handleChange(e) {
+    setDispledTodosType(e.target.value);
+  }
   return (
     <>
       <Container maxWidth="sm">
@@ -37,8 +40,29 @@ export default function TodoList() {
               <ToggleButton value="completed">Completed</ToggleButton>
               <ToggleButton value="non-completed">Non-Completed</ToggleButton>
             </ToggleButtonGroup>
+            <Grid container style={{ marginTop: "20px" }} spacing={2}>
+          <Grid
+            size={8}
+            display="flex"
+            justifyContent="space-arround"
+            alignItems="center"
+          >
+            <TextField style={{ width: "100%" }}
+                  id="outlined-basic"
+                  label= "title of Task"
+                  variant="outlined"
+                  value={titleInput}
+                  onChange={(e)=>{
+                    setTiteInput(e.target.value)
+                  }}
+                  />
+                
+           
+          </Grid>
+        </Grid>
           </CardContent>
         </Card>
+        
       </Container>
     </>
   );
