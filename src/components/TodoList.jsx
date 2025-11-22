@@ -46,6 +46,13 @@ export default function TodoList() {
       }
     });
   }
+
+  function handleDelete(todoObj){
+    todos.filter((t) => {
+        return t.id != todoObj.id;
+      });
+
+  }
   function openUpdateDialog(todoObj) {
     setDialogTodo(todoObj);
     setShowUpdateDialog(true);
