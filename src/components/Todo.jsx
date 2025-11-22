@@ -1,6 +1,7 @@
 import { Card, CardContent, Grid, IconButton, Typography } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
+import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 
 export default function Todo(todo, Delete, Update, toggledCompleted) {
     const { id, title,  isCompleted } = todo;
@@ -57,6 +58,18 @@ export default function Todo(todo, Delete, Update, toggledCompleted) {
                 onClick={Update(todo)}
               >
                 <ModeEditOutlineOutlinedIcon />
+              </IconButton>
+              <IconButton
+                className="iconButton"
+                aria-label="delete"
+                style={{
+                  color: "#b23c17",
+                  background: "white",
+                  border: "solid #b23c17 3px",
+                }}
+                onClick={Delete(todo)}
+              >
+                <DeleteOutlineOutlinedIcon />
               </IconButton>
 
             </Grid>
