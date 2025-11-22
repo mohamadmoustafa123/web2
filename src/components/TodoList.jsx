@@ -11,15 +11,24 @@ import {
   Typography,
 } from "@mui/material";
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 export default function TodoList() {
   const [displayedTodosType, setDispledTodosType] = useState("all");
   const [titleInput, setTiteInput] = useState("");
+  const [todos, setTodos] = useState([]);
   function handleChange(e) {
     setDispledTodosType(e.target.value);
   }
 
-  function handleAddClick() {}
+  function handleAddClick() {
+    setTodos([
+      ...todos,
+      { id: uuidv4(), title: titleInput, isCompleted: false },
+    ]);
+    console.log(todos);
+    setTiteInput("");
+  }
   return (
     <>
       <Container maxWidth="sm">
@@ -61,25 +70,24 @@ export default function TodoList() {
                   }}
                 />
               </Grid>
-              
-                <Grid
-                  size={4}
-                  display="flex"
-                  justifyContent="space-around"
-                  alignItems="center"
+
+              <Grid
+                size={4}
+                display="flex"
+                justifyContent="space-around"
+                alignItems="center"
+              >
+                <Button
+                  style={{ width: "100%", height: "100%" }}
+                  variant="contained"
+                  onClick={() => {
+                    handleAddClick();
+                  }}
+                  disabled={titleInput <= 0}
                 >
-                  <Button
-                    style={{ width: "100%", height: "100%" }}
-                    variant="contained"
-                    onClick={() => {
-                      handleAddClick();
-                    }}
-                    disabled={titleInput <= 0}
-                  >
-                    Add Task
-                  </Button>
-                </Grid>
-             
+                  Add Task
+                </Button>
+              </Grid>
             </Grid>
           </CardContent>
         </Card>
