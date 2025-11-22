@@ -2,7 +2,13 @@ import React from 'react'
 
 function signin() {
   return (
-    <div>signin</div>
+    <div>
+        <div>
+        <h1>welcome</h1>
+        <label htmlFor="name">Name</label>
+        <input type="text" placeholder='enter your name' />
+        </div>
+    </div>
   )
 }
 
