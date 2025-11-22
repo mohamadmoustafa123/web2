@@ -29,6 +29,17 @@ export default function TodoList() {
     console.log(todos);
     setTiteInput("");
   }
+let todosToBeRendered=todos;
+  const todoJSX = todosToBeRendered.map((t) => {
+    return (
+      <Todo
+        key={t.id}
+        todo={t}
+        Delete={handleDelete}
+        Update={handleUpdate}
+      />
+    );
+  });
   return (
     <>
       <Container maxWidth="sm">
