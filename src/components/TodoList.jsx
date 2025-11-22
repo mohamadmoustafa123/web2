@@ -40,42 +40,53 @@ export default function TodoList() {
   function handleToggledCompleted(todoObj) {
     setTodos(
       todos.map((t) => {
-      if (t.id == todoObj.id) {
-        return { ...t, isCompleted: !t.isCompleted };
-      } else {
-        return t;
-      }
-    })
-    )
+        if (t.id == todoObj.id) {
+          return { ...t, isCompleted: !t.isCompleted };
+        } else {
+          return t;
+        }
+      })
+    );
   }
 
-  function handleDelete(todoObj){
+  function handleDelete(todoObj) {
     setTodos(
       todos.filter((t) => {
         return t.id != todoObj.id;
       })
-
-    )
+    );
   }
   function openUpdateDialog(todoObj) {
     setDialogTodo(todoObj);
     setShowUpdateDialog(true);
   }
-  function handleUpdateConfirm(){
-   setTodos(
-    todos.map((t) => {
+  function handleUpdateConfirm() {
+    setTodos(
+      todos.map((t) => {
         if (t.id == dialogTodo.id) {
           return {
             ...t,
             title: dialogTodo.title,
-          
           };
         } else return t;
       })
-   )
+    );
     setShowUpdateDialog(false);
   }
   let todosToBeRendered = todos;
+  if (displayedTodosType == "non-completed") {
+    todosToBeRendered = todos.filter((t) => {
+      return !t.isCompleted;
+    });
+  }
+  if (displayedTodosType == "completed") {
+    todosToBeRendered = todos.filter((t) => {
+      return t.isCompleted;
+    });
+  }
+  if (displayedTodosType == "all") {
+    todosToBeRendered = todos;
+  }
   const todoJSX = todosToBeRendered.map((t) => {
     return (
       <Todo
@@ -93,11 +104,9 @@ export default function TodoList() {
       {dialogTodo && (
         <Dialog
           style={{ direction: "rtl" }}
-          onClose={
-            ()=>{
-                setShowUpdateDialog(false)
-            }
-          }
+          onClose={() => {
+            setShowUpdateDialog(false);
+          }}
           open={showUpdateDialog}
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
@@ -120,9 +129,13 @@ export default function TodoList() {
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={()=>{
-                setShowUpdateDialog(false)
-            }}>close</Button>
+            <Button
+              onClick={() => {
+                setShowUpdateDialog(false);
+              }}
+            >
+              close
+            </Button>
             <Button autoFocus onClick={handleUpdateConfirm}>
               cofirrm
             </Button>
@@ -150,10 +163,9 @@ export default function TodoList() {
               <ToggleButton value="completed">Completed</ToggleButton>
               <ToggleButton value="non-completed">Non-Completed</ToggleButton>
             </ToggleButtonGroup>
-{todoJSX}
-        
+            {todoJSX}
+
             <Grid container style={{ marginTop: "20px" }} spacing={2}>
-                
               <Grid
                 size={8}
                 display="flex"
