@@ -38,27 +38,32 @@ export default function TodoList() {
   }
 
   function handleToggledCompleted(todoObj) {
-    todos.map((t) => {
+    setTodos(
+      todos.map((t) => {
       if (t.id == todoObj.id) {
         return { ...t, isCompleted: !t.isCompleted };
       } else {
         return t;
       }
-    });
+    })
+    )
   }
 
   function handleDelete(todoObj){
-    todos.filter((t) => {
+    setTodos(
+      todos.filter((t) => {
         return t.id != todoObj.id;
-      });
+      })
 
+    )
   }
   function openUpdateDialog(todoObj) {
     setDialogTodo(todoObj);
     setShowUpdateDialog(true);
   }
   function handleUpdateConfirm(){
-   todos.map((t) => {
+   setTodos(
+    todos.map((t) => {
         if (t.id == dialogTodo.id) {
           return {
             ...t,
@@ -66,7 +71,8 @@ export default function TodoList() {
           
           };
         } else return t;
-      });
+      })
+   )
     setShowUpdateDialog(false);
   }
   let todosToBeRendered = todos;
@@ -144,7 +150,10 @@ export default function TodoList() {
               <ToggleButton value="completed">Completed</ToggleButton>
               <ToggleButton value="non-completed">Non-Completed</ToggleButton>
             </ToggleButtonGroup>
+{todoJSX}
+        
             <Grid container style={{ marginTop: "20px" }} spacing={2}>
+                
               <Grid
                 size={8}
                 display="flex"

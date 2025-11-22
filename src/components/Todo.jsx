@@ -1,9 +1,9 @@
 import { Card, CardContent, Grid, IconButton, Typography } from "@mui/material";
-import CheckIcon from "@mui/icons-material/Check";
+import CheckIcon from '@mui/icons-material/Check';
 import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 
-export default function Todo(todo, Delete, Update, toggledCompleted) {
+export default function Todo({todo, Delete, Update, toggledCompleted}) {
     const { id, title,  isCompleted } = todo;
 
   return (
@@ -16,7 +16,7 @@ export default function Todo(todo, Delete, Update, toggledCompleted) {
           color: "white",
           textAlign: "right",
           marginTop: 5,
-        }}
+        }}   
         className="todoCard"
       >
         <CardContent>
@@ -55,7 +55,9 @@ export default function Todo(todo, Delete, Update, toggledCompleted) {
                   background: "white",
                   border: "solid #1769aa 3px",
                 }}
-                onClick={Update(todo)}
+                onClick={()=>{
+                    Update(todo)
+                }}
               >
                 <ModeEditOutlineOutlinedIcon />
               </IconButton>
@@ -67,7 +69,10 @@ export default function Todo(todo, Delete, Update, toggledCompleted) {
                   background: "white",
                   border: "solid #b23c17 3px",
                 }}
-                onClick={Delete(todo)}
+                onClick={()=>{
+                  Delete(todo)
+
+                }}
               >
                 <DeleteOutlineOutlinedIcon />
               </IconButton>
