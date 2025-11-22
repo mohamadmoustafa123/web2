@@ -1,7 +1,9 @@
 import { Card, CardContent, Grid, Typography } from "@mui/material";
 
 export default function Todo(todo, Delete, Update, toggledCompleted) {
+    const { id, title, details, isCompleted } = todo;
   return (
+    
     <>
       <Card
         sx={{
@@ -24,7 +26,7 @@ export default function Todo(todo, Delete, Update, toggledCompleted) {
               justifyContent="center"
               alignItems="center"
             >
-                
+
             </Grid>
           </Grid>
         </CardContent>
