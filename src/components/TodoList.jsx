@@ -20,7 +20,6 @@ export default function TodoList() {
   const [todos, setTodos] = useState([]);
   function handleChange(e) {
     setDispledTodosType(e.target.value);
-
   }
 
   function handleAddClick() {
@@ -31,7 +30,17 @@ export default function TodoList() {
     console.log(todos);
     setTiteInput("");
   }
-let todosToBeRendered=todos;
+
+  function handleToggledCompleted(todoObj) {
+    todos.map((t) => {
+      if (t.id == todoObj.id) {
+        return { ...t, isCompleted: !t.isCompleted };
+      } else {
+        return t;
+      }
+    });
+  }
+  let todosToBeRendered = todos;
   const todoJSX = todosToBeRendered.map((t) => {
     return (
       <Todo

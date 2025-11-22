@@ -1,7 +1,9 @@
-import { Card, CardContent, Grid, Typography } from "@mui/material";
+import { Card, CardContent, Grid, IconButton, Typography } from "@mui/material";
+import CheckIcon from "@mui/icons-material/Check";
 
 export default function Todo(todo, Delete, Update, toggledCompleted) {
-    const { id, title, details, isCompleted } = todo;
+    const { id, title,  isCompleted } = todo;
+
   return (
     
     <>
@@ -18,7 +20,9 @@ export default function Todo(todo, Delete, Update, toggledCompleted) {
         <CardContent>
           <Grid container spacing={2}>
             <Grid size={8}>
-              <Typography></Typography>
+              <Typography>
+                {title}
+              </Typography>
             </Grid>
             <Grid
               size={4}
@@ -26,6 +30,20 @@ export default function Todo(todo, Delete, Update, toggledCompleted) {
               justifyContent="center"
               alignItems="center"
             >
+                <IconButton
+                className="iconButton"
+                aria-label="delete"
+                style={{
+                  color: isCompleted ? "white" : "#8bc34a",
+                  background: isCompleted ? "#8bc34a" : "white",
+                  border: "solid #8bc34a 3px",
+                }}
+                onClick={() => {
+                  toggledCompleted(todo)
+                }}
+              >
+                <CheckIcon />
+              </IconButton>
 
             </Grid>
           </Grid>
