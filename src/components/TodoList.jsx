@@ -3,6 +3,10 @@ import {
   Card,
   CardContent,
   Container,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
   Divider,
   Grid,
   TextField,
@@ -46,6 +50,18 @@ export default function TodoList() {
     setDialogTodo(todoObj);
     setShowUpdateDialog(true);
   }
+  function handleUpdateConfirm(){
+   todos.map((t) => {
+        if (t.id == dialogTodo.id) {
+          return {
+            ...t,
+            title: dialogTodo.title,
+          
+          };
+        } else return t;
+      });
+    setShowUpdateDialog(false);
+  }
   let todosToBeRendered = todos;
   const todoJSX = todosToBeRendered.map((t) => {
     return (
@@ -60,6 +76,46 @@ export default function TodoList() {
   });
   return (
     <>
+      {/*UPDATE DIALOG*/}
+      {dialogTodo && (
+        <Dialog
+          style={{ direction: "rtl" }}
+          onClose={
+            ()=>{
+                setShowUpdateDialog(false)
+            }
+          }
+          open={showUpdateDialog}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">{"تعديل مهمه"}</DialogTitle>
+          <DialogContent>
+            <TextField
+              autoFocus
+              required
+              margin="dense"
+              id="name"
+              name="email"
+              label="Title of Task"
+              fullWidth
+              variant="standard"
+              value={dialogTodo.title}
+              onChange={(e) => {
+                setDialogTodo({ ...dialogTodo, title: e.target.value });
+              }}
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={()=>{
+                setShowUpdateDialog(false)
+            }}>close</Button>
+            <Button autoFocus onClick={handleUpdateConfirm}>
+              cofirrm
+            </Button>
+          </DialogActions>
+        </Dialog>
+      )}
       <Container maxWidth="sm">
         <Card
           sx={{ minWidth: 275 }}
