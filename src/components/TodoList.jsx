@@ -18,6 +18,8 @@ export default function TodoList() {
   const [displayedTodosType, setDispledTodosType] = useState("all");
   const [titleInput, setTiteInput] = useState("");
   const [todos, setTodos] = useState([]);
+  const [dialogTodo, setDialogTodo] = useState(null);
+  const [showUpdateDialog, setShowUpdateDialog] = useState(false);
   function handleChange(e) {
     setDispledTodosType(e.target.value);
   }
@@ -40,6 +42,10 @@ export default function TodoList() {
       }
     });
   }
+  function openUpdateDialog(todoObj) {
+    setDialogTodo(todoObj);
+    setShowUpdateDialog(true);
+  }
   let todosToBeRendered = todos;
   const todoJSX = todosToBeRendered.map((t) => {
     return (
@@ -47,7 +53,7 @@ export default function TodoList() {
         key={t.id}
         todo={t}
         Delete={handleDelete}
-        Update={handleUpdate}
+        Update={openUpdateDialog}
         toggledCompleted={handleToggledCompleted}
       />
     );
