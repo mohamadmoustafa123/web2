@@ -39,6 +39,7 @@ let todosToBeRendered=todos;
         todo={t}
         Delete={handleDelete}
         Update={handleUpdate}
+        toggledCompleted={handleToggledCompleted}
       />
     );
   });
