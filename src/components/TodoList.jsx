@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import Todo from "./Todo";
 
 export default function TodoList() {
   const [displayedTodosType, setDispledTodosType] = useState("all");
@@ -19,6 +20,7 @@ export default function TodoList() {
   const [todos, setTodos] = useState([]);
   function handleChange(e) {
     setDispledTodosType(e.target.value);
+
   }
 
   function handleAddClick() {
