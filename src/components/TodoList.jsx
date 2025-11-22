@@ -1,4 +1,5 @@
 import {
+  Button,
   Card,
   CardContent,
   Container,
@@ -13,10 +14,12 @@ import { useState } from "react";
 
 export default function TodoList() {
   const [displayedTodosType, setDispledTodosType] = useState("all");
-   const [titleInput, setTiteInput] = useState("");
+  const [titleInput, setTiteInput] = useState("");
   function handleChange(e) {
     setDispledTodosType(e.target.value);
   }
+
+  function handleAddClick() {}
   return (
     <>
       <Container maxWidth="sm">
@@ -41,28 +44,45 @@ export default function TodoList() {
               <ToggleButton value="non-completed">Non-Completed</ToggleButton>
             </ToggleButtonGroup>
             <Grid container style={{ marginTop: "20px" }} spacing={2}>
-          <Grid
-            size={8}
-            display="flex"
-            justifyContent="space-arround"
-            alignItems="center"
-          >
-            <TextField style={{ width: "100%" }}
+              <Grid
+                size={8}
+                display="flex"
+                justifyContent="space-around"
+                alignItems="center"
+              >
+                <TextField
+                  style={{ width: "100%" }}
                   id="outlined-basic"
-                  label= "title of Task"
+                  label="title of Task"
                   variant="outlined"
                   value={titleInput}
-                  onChange={(e)=>{
-                    setTiteInput(e.target.value)
+                  onChange={(e) => {
+                    setTiteInput(e.target.value);
                   }}
-                  />
-                
-           
-          </Grid>
-        </Grid>
+                />
+              </Grid>
+              
+                <Grid
+                  size={4}
+                  display="flex"
+                  justifyContent="space-around"
+                  alignItems="center"
+                >
+                  <Button
+                    style={{ width: "100%", height: "100%" }}
+                    variant="contained"
+                    onClick={() => {
+                      handleAddClick();
+                    }}
+                    disabled={titleInput <= 0}
+                  >
+                    Add Task
+                  </Button>
+                </Grid>
+             
+            </Grid>
           </CardContent>
         </Card>
-        
       </Container>
     </>
   );
