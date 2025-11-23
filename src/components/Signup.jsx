@@ -43,7 +43,7 @@ console.log("password",password);
              <label htmlFor="confirmPassword" className='block text-gray-700 mb-1'>Confirm password:</label>
              <input type="text"  id='confirmPassword' value={confirmPassword} onChange={(e)=>SetConfirmPassord(e.target.value)} placeholder='enter your name'className='w-full px-4 py-2 border-gray-300 rounded-lg focus:ring-blue-400' />
             </div>
-            
+            <button type='submit'className='w-full bg-gray-500 text-white py-2 rounded-log hover:bg-blue-600 transition-colors' >Submit</button>
          </form>
         </div>
     </div>
