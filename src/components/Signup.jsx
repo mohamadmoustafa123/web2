@@ -25,7 +25,8 @@ console.log("password",password);
   return (
     <div>
         <div>
-            <h1></h1>
+            <h1>welcome..</h1>
+            <form
         </div>
     </div>
   )
