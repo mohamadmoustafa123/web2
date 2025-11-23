@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+
 
 function Signin() {
     const [name,SetName]=useState("");
     const [email,SetEmail]=useState("");
     const [password,SetPassord]=useState("");
-    
+  const navigate=useNavigate();
     
     const handleSubmit = (e)=>{
         e.preventDefault();
@@ -34,6 +36,7 @@ function Signin() {
           
           </div>
         <button type='submit' className='w-full bg-gray-500 text-white py-2 rounded-lg  hover:bg-blue-600 transition-colors'>Submit</button>
+       <button onClick={()=>navigate("/signup") } className='text-gray-600' hover:underline>create one</button>
         </form>
         </div>
     </div>
