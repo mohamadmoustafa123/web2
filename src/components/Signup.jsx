@@ -26,27 +26,27 @@ console.log("Password",password);
 
 }
   return (
-    <div>
-        <div>
-          <h1>welcome..</h1>
+    <div className="bg-gray-100 min-h-screen py-8">
+        <div className="max-w-4xl mx-auto px-4">
+          <h1 className="text-3xl font-bold text-center text-gray-800 mb-8">welcome..</h1>
            <form onSubmit={handleSubmit}>
             <div>
-             <label htmlFor="name" className='block text-gray-700 mb-1'>Name:</label>
-             <input type="text"  id='name' value={name} onChange={(e)=>SetName(e.target.value)} placeholder='enter your name'className='w-full px-4 py-2 border-gray-300 rounded-lg focus:ring-blue-400' />
+             <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1" >Name:</label>
+             <input type="text"  id='name' value={name} onChange={(e)=>SetName(e.target.value)} placeholder='enter your name'  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"  />
             </div>
             <div>
-             <label htmlFor="email" className='block text-gray-700 mb-1'>Email:</label>
-             <input type="text"  id='email' value={email} onChange={(e)=>SetEmail(e.target.value)} placeholder='enter your name'className='w-full px-4 py-2 border-gray-300 rounded-lg focus:ring-blue-400' />
+             <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email:</label>
+             <input type="text"  id='email' value={email} onChange={(e)=>SetEmail(e.target.value)} placeholder='enter your email' className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
             </div>
             <div>
-             <label htmlFor="password" className='block text-gray-700 mb-1'>password:</label>
-             <input type="password"  id='password' value={name} onChange={(e)=>SetPassord(e.target.value)} placeholder='enter your name'className='w-full px-4 py-2 border-gray-300 rounded-lg focus:ring-blue-400' />
+             <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">password:</label>
+             <input type="password"  id='password' value={password} onChange={(e)=>SetPassord(e.target.value)} placeholder='enter your password' className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
             </div>
             <div>
-             <label htmlFor="confirmPassword" className='block text-gray-700 mb-1'>Confirm password:</label>
-             <input type="text"  id='confirmPassword' value={confirmPassword} onChange={(e)=>SetConfirmPassord(e.target.value)} placeholder='enter your name'className='w-full px-4 py-2 border-gray-300 rounded-lg focus:ring-blue-400' />
+             <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-1">Confirm password:</label>
+             <input type="password"  id='confirmPassword' value={confirmPassword} onChange={(e)=>SetConfirmPassord(e.target.value)} placeholder='enter your password ' className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
             </div>
-             <button onClick={()=>navigate("/")}  className='text-gray-600' hover:underline  >Sign in</button>
+             <button onClick={()=>navigate("/HomePage")} className="bg-gray-300 hover:bg-gray-400 text-white font-medium py-5 px-5 rounded-md transition-colors" >Submit</button>
         
          </form>
         </div>
