@@ -137,7 +137,7 @@ export default function TodoList() {
               close
             </Button>
             <Button autoFocus onClick={handleUpdateConfirm}>
-              cofirrm
+              Confirm
             </Button>
           </DialogActions>
         </Dialog>
@@ -153,6 +153,7 @@ export default function TodoList() {
             </Typography>
             <Divider />
             <ToggleButtonGroup
+            className="mt-4"
               color="primary"
               value={displayedTodosType}
               exclusive

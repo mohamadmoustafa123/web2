@@ -3,14 +3,11 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import HomePage from "./components/HomePage";
 import NavBar from "./components/Navbar";
-<<<<<<< HEAD
 import Signin from "./components/Singin";
 import Signup from "./components/Signup";
-=======
 import About from "./components/About";
 import Contact from "./components/Contact";
 
->>>>>>> 2208eda8a5d862dc51191775c571ef433cef2f61
 function App() {
   return (
 
