@@ -25,8 +25,13 @@ console.log("password",password);
   return (
     <div>
         <div>
-            <h1>welcome..</h1>
-            <form
+          <h1>welcome..</h1>
+           <form onSubmit={handleSubmit}>
+            <div>
+            <label htmlFor="name" className='block text-gray-700 mb-1'>Name:</label>
+            <input type="text"  id='name' value={name} onChange={(e)=>SetName(e.target.value)} placeholder='enter your name'className='w-full px-4 py-2 border-gray-300 rounded-lg focus:ring-blue-400' />
+            </div>
+         </form>
         </div>
     </div>
   )
