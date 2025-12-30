@@ -79,7 +79,6 @@ export default function TodoList() {
       if (response.status === 200) {
         setTodos(response.data);
         console.log(response.data);
-        showSuccess(response.data.message);
       }
       if (response.status === 204) {
         setTodos([]);
@@ -104,7 +103,7 @@ export default function TodoList() {
       if (response.status === 201) {
         setTodos([
           ...todos,
-          { id: response.data.id, Task: titleInput, isCompleted: false },
+          { ID: response.data.id, Task: titleInput, isCompleted: false },
         ]);
         console.log(todos);
         setTiteInput("");
@@ -220,7 +219,7 @@ export default function TodoList() {
   });
   return (
     <>
-      <div style={{position:"absolute"}} className="mb-6 space-y-3">
+      <div style={{ position: "absolute" }} className="mb-6 space-y-3">
         {isLoading && (
           <div className="rounded-lg border border-slate-200 bg-white p-3 text-sm text-slate-700">
             Loading...
