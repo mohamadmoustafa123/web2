@@ -26,6 +26,45 @@ export default function TodoList() {
   const [todos, setTodos] = useState([]);
   const [dialogTodo, setDialogTodo] = useState(null);
   const [showUpdateDialog, setShowUpdateDialog] = useState(false);
+  // Alert states
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [successMessage, setSuccessMessage] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(false);
+
+  // Auto-clear success alert after 2.5 seconds
+  useEffect(() => {
+    if (!isSuccess) return;
+
+    const timer = setTimeout(() => {
+      clearAlerts();
+    }, 2500);
+
+    return () => clearTimeout(timer);
+  }, [isSuccess]);
+
+  // clear errors and success messages
+  const clearAlerts = () => {
+    setIsSuccess(false);
+    setIsError(false);
+    setSuccessMessage("");
+    setErrorMessage("");
+  };
+
+  // show success message
+  const showSuccess = (message) => {
+    clearAlerts();
+    setSuccessMessage(message);
+    setIsSuccess(true);
+  };
+
+  // show error message
+  const showError = (message) => {
+    clearAlerts();
+    setErrorMessage(message);
+    setIsError(true);
+  };
 
   // fill students on component load
   useEffect(() => {
@@ -35,16 +74,21 @@ export default function TodoList() {
   // CRUD Operations
   const getTasks = async () => {
     try {
+      setIsLoading(true);
       const response = await axios.get("http://localhost:5000/tasks");
       if (response.status === 200) {
         setTodos(response.data);
         console.log(response.data);
+        showSuccess(response.data.message);
       }
       if (response.status === 204) {
         setTodos([]);
+        showSuccess(response.data.message);
       }
     } catch (err) {
       console.log(err.response?.data?.message || "Error deleting student.");
+    } finally {
+      setIsLoading(false);
     }
   };
   function handleChange(e) {
@@ -53,6 +97,7 @@ export default function TodoList() {
   //Api Add a Task
   async function handleAddClick() {
     try {
+      setIsLoading(true);
       const response = await axios.post("http://localhost:5000/tasks", {
         title: titleInput,
       });
@@ -63,15 +108,19 @@ export default function TodoList() {
         ]);
         console.log(todos);
         setTiteInput("");
+        showSuccess(response.data.message);
       }
     } catch (err) {
-      console.log(err.response?.data?.message || "Error updating Task.");
+      showError(err.response?.data?.message || "Error added Task.");
+    } finally {
+      setIsLoading(false);
     }
   }
   //update toggle completed or not
 
   async function handleToggledCompleted(todoObj) {
     try {
+      setIsLoading(true);
       const response = await axios.put(
         "http://localhost:5000/tasksIscompleted/" + todoObj.ID
       );
@@ -85,13 +134,17 @@ export default function TodoList() {
             }
           })
         );
+        showSuccess(response.data.message);
       }
     } catch (err) {
-      console.log(err.response?.data?.message || "Error updating Task.");
+      showError(err.response?.data?.message || "Error updating Task.");
+    } finally {
+      setIsLoading(false);
     }
   }
   //Delete
   async function handleDelete(todoObj) {
+    setIsLoading(true);
     try {
       const response = await axios.delete(
         "http://localhost:5000/tasks/" + todoObj.ID
@@ -102,9 +155,12 @@ export default function TodoList() {
             return t.ID !== todoObj.ID;
           })
         );
+        showSuccess(response.data.message);
       }
     } catch (err) {
-      console.log(err.response?.data?.message || "Error updating Task.");
+      showError(err.response?.data?.message || "Error deleting Task.");
+    } finally {
+      setIsLoading(false);
     }
   }
   //update title of task
@@ -129,6 +185,7 @@ export default function TodoList() {
             } else return t;
           })
         );
+        showSuccess(response.data.message);
       }
     } catch (err) {
       console.log(err.response?.data?.message || "Error updating Task.");
@@ -163,6 +220,25 @@ export default function TodoList() {
   });
   return (
     <>
+      <div style={{position:"absolute"}} className="mb-6 space-y-3">
+        {isLoading && (
+          <div className="rounded-lg border border-slate-200 bg-white p-3 text-sm text-slate-700">
+            Loading...
+          </div>
+        )}
+        {isSuccess && (
+          <div className="rounded-lg border border-emerald-200 bg-emerald-50 p-3 text-sm text-emerald-800">
+            {successMessage}
+          </div>
+        )}
+        {isError && (
+          <div className="rounded-lg border border-rose-200 bg-rose-50 p-3 text-sm text-rose-800">
+            {errorMessage}
+          </div>
+        )}
+      </div>
+
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3"></div>
       {/*UPDATE DIALOG*/}
       {dialogTodo && (
         <Dialog
