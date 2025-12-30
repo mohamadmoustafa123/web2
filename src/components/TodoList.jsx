@@ -96,6 +96,7 @@ export default function TodoList() {
   //Api Add a Task
   async function handleAddClick() {
     try {
+      
       setIsLoading(true);
       const response = await axios.post("http://localhost:5000/tasks", {
         title: titleInput,
