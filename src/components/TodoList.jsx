@@ -50,14 +50,23 @@ export default function TodoList() {
   function handleChange(e) {
     setDispledTodosType(e.target.value);
   }
-
-  function handleAddClick() {
-    setTodos([
-      ...todos,
-      { id: uuidv4(), title: titleInput, isCompleted: false },
-    ]);
-    console.log(todos);
-    setTiteInput("");
+  //Api Add a Task
+  async function handleAddClick() {
+    try {
+      const response = await axios.post("http://localhost:5000/tasks", {
+        title: titleInput,
+      });
+      if (response.status === 201) {
+        setTodos([
+          ...todos,
+          { id: response.data.id, Task: titleInput, isCompleted: false },
+        ]);
+        console.log(todos);
+        setTiteInput("");
+      }
+    } catch (err) {
+      console.log(err.response?.data?.message || "Error updating Task.");
+    }
   }
   //update toggle completed or not
 
