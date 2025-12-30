@@ -81,14 +81,24 @@ export default function TodoList() {
       console.log(err.response?.data?.message || "Error updating Task.");
     }
   }
-
-  function handleDelete(todoObj) {
-    setTodos(
-      todos.filter((t) => {
-        return t.id !== todoObj.id;
-      })
-    );
+  //Delete
+  async function handleDelete(todoObj) {
+    try {
+      const response = await axios.delete(
+        "http://localhost:5000/tasks/" + todoObj.ID
+      );
+      if (response.status === 200) {
+        setTodos(
+          todos.filter((t) => {
+            return t.ID !== todoObj.ID;
+          })
+        );
+      }
+    } catch (err) {
+      console.log(err.response?.data?.message || "Error updating Task.");
+    }
   }
+  //update title of task
   function openUpdateDialog(todoObj) {
     setDialogTodo(todoObj);
     setShowUpdateDialog(true);
