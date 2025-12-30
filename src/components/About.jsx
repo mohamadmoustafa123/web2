@@ -1,7 +1,6 @@
 export default function About() {
   return (
-    <>
-    
+    <>  
   <div style={{height:"100vh" ,display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
         <h2 >
         This website is for people with busy daily schedules, helping them
