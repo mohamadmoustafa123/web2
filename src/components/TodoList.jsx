@@ -107,7 +107,7 @@ export default function TodoList() {
   const getTasks = async () => {
     try {
       setIsLoading(true);
-      const response = await axios.get("http://localhost:5000/tasks");
+      const response = await axios.get("https://web2-backend-production.up.railway.app/tasks");
       if (response.status === 200) {
         setTodos(response.data);
         console.log(response.data);
@@ -129,7 +129,7 @@ export default function TodoList() {
   async function handleAddClick() {
     try {
       setIsLoading(true);
-      const response = await axios.post("http://localhost:5000/tasks", {
+      const response = await axios.post("https://web2-backend-production.up.railway.app/tasks", {
         title: titleInput,
       });
       if (response.status === 201) {
@@ -153,7 +153,7 @@ export default function TodoList() {
     try {
       setIsLoading(true);
       const response = await axios.put(
-        "http://localhost:5000/tasksIscompleted/" + todoObj.ID
+        "https://web2-backend-production.up.railway.app/tasksIscompleted/" + todoObj.ID
       );
       if (response.status === 200) {
         setTodos(
@@ -178,7 +178,7 @@ export default function TodoList() {
     setIsLoading(true);
     try {
       const response = await axios.delete(
-        "http://localhost:5000/tasks/" + todoObj.ID
+        "https://web2-backend-production.up.railway.app/tasks/" + todoObj.ID
       );
       if (response.status === 200) {
         setTodos(
@@ -202,7 +202,7 @@ export default function TodoList() {
   async function handleUpdateConfirm() {
     try {
       const response = await axios.put(
-        "http://localhost:5000/tasks/" + dialogTodo.ID,
+        "https://web2-backend-production.up.railway.app/tasks/" + dialogTodo.ID,
         { newtitle: dialogTodo.Task }
       );
       if (response.status === 200) {
