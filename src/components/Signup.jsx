@@ -39,7 +39,12 @@ if (res.status === 201) {
         navigate("/login"); 
       }
 
-
+  } catch (err) {
+      alert(err.response?.data?.message || "Signup failed");
+    } finally {
+      
+    }
+  };
 
 }
   return (
