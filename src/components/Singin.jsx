@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import axios from "axios";
 
 
 function Signin() {
@@ -18,20 +19,17 @@ function Signin() {
 
     async function handleLogin() {
   try {
-    setIsLoading(true);
+   // setIsLoading(true);
 
     const res = await axios.post("http://localhost:5000/login", {
       email,
       password,
     });
 
-    
     if (res.status === 200) {
        
-
-            localStorage.setItem("user", JSON.stringify(res.data.user));
-
-     
+      localStorage.setItem("user", JSON.stringify(res.data.user));
+  
       navigate("/home");
     }
 
@@ -43,7 +41,7 @@ function Signin() {
       alert("Server error, try again later");
     }
   } finally {
-    setIsLoading(false);
+   // setIsLoading(false);
   }
 }
 
