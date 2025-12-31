@@ -34,6 +34,11 @@ const handleSignup = async () => {
         confirmPassword,
       });
 
+if (res.status === 201) {
+        alert(res.data.message);
+        navigate("/login"); 
+      }
+
 
 
 }
