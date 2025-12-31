@@ -24,6 +24,18 @@ console.log("Name",name);
 console.log("Emamil",Email);
 console.log("Password",password);
 
+const handleSignup = async () => {
+    try {
+    
+      const res = await axios.post("http://localhost:5000/signup", {
+        name,
+        email,
+        password,
+        confirmPassword,
+      });
+
+
+
 }
   return (
     <div className="bg-gray-100 min-h-screen py-8">

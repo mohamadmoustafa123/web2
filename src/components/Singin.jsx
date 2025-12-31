@@ -19,7 +19,7 @@ function Signin() {
 
     async function handleLogin() {
   try {
-   // setIsLoading(true);
+   
 
     const res = await axios.post("http://localhost:5000/login", {
       email,
@@ -40,10 +40,8 @@ function Signin() {
     } else {
       alert("Server error, try again later");
     }
-  } finally {
-   // setIsLoading(false);
   }
-}
+  };
 
 
 
