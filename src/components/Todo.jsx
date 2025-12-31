@@ -20,9 +20,9 @@ export default function Todo({ todo, Delete, Update, toggledCompleted }) {
       >
         <CardContent>
           <Grid container spacing={2}>
-            <Grid size={8}>
+            <Grid size={8} display="flex" justifyContent="start" >
               <Typography>
-                {title}
+                
                 {Task}
               </Typography>
             </Grid>
