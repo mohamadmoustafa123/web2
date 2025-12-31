@@ -13,8 +13,42 @@ function Signin() {
        console.log("Name:",name);
         console.log("Email:",email);
        console.log("Password:",password);
+
+    };
+
+    async function handleLogin() {
+  try {
+    setIsLoading(true);
+
+    const res = await axios.post("http://localhost:5000/login", {
+      email,
+      password,
+    });
+
+    
+    if (res.status === 200) {
        
+
+            localStorage.setItem("user", JSON.stringify(res.data.user));
+
+     
+      navigate("/home");
     }
+
+  } catch (err) {
+  
+       if (err.response && err.response.status === 401) {
+      alert("Email or password is incorrect");
+    } else {
+      alert("Server error, try again later");
+    }
+  } finally {
+    setIsLoading(false);
+  }
+}
+
+
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
        <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">      
